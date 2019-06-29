@@ -20,7 +20,7 @@ const LerDiretorio = module.exports = (diretorio = "./commands/") => {
                 }
 
                 client.cmds.set(props.info.name, props)
-                client.aliases.forEach((alias) => {
+                props.info.aliases.forEach((alias) => {
                     client.aliases.set(alias, props)
                 })
                 console.log(`Comando ${props.info.name} e seus ${props.info.aliases.length} aliases salvos.`)
