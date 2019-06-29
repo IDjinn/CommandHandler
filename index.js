@@ -6,6 +6,10 @@ const client = new Client();
 client.cmds = new Collection();
 client.aliases = new Collection();
 
+client.on("ready", () => {
+    console.log("bot online !")
+})
+
 const carregarComandos = module.exports = (dir = "./commands/") => {
     readdir(dir, (erro, arquivos) => {
         if (erro) return console.log(erro);
