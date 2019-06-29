@@ -6,29 +6,34 @@ const client = new Client();
 client.cmds = new Collection();
 client.aliases = new Collection();
 
-const LerDiretorio = module.exports = (diretorio = "./commands/") => {
-    readdir(diretorio, (erro, arquivos) => {
-        if (erro) return console.log(erro)
+const carregarComandos = module.exports = (dir = "./commands/") => {
+    readdir(dir, (erro, arquivos) => {
+        if (erro) return console.log(erro);
         arquivos.forEach((arquivo) => {
-            if (lstatSync(`./${diretorio}/${arquivo}`).isDirectory()) {
-                LerDiretorio(`./${diretorio}/${arquivo}`)
-            } else if (arquivo.endsWith(".js")) {
-                const props = require(`./${diretorio}/${arquivo}`)
-                if (!props || !props.info.name || !props.info.aliases || !props.run) {
-                    console.log(`Não foi possível carregar o comando ${arquivo.split(".")[0]} pois há alguma propiedade faltando.`)
-                    return;
-                }
+            try {
+                if (lstatSync(`./${dir}/${arquivo}`).isDirectory()) {
+                    carregarComandos(`./${dir}/${arquivo}`)
+                } else if (arquivo.endsWith(".js")) {
+                    const props = require(`./${dir}/${arquivo}`)
+                    if (!props || !props.info || !props.run || !props.info.aliases) {
+                        console.log(`Não foi possível carregar o comando ${arquivo.split(".")[0]} pois ou não há ou falta propiedades.`);
+                        return;
+                    }
+                    client.cmds.set(props.info.name, props);
+                    props.info.aliases.forEach((alias) => {
+                        client.aliases.set(alias, props)
+                    })
 
-                client.cmds.set(props.info.name, props)
-                props.info.aliases.forEach((alias) => {
-                    client.aliases.set(alias, props)
-                })
-                console.log(`Comando ${props.info.name} e seus ${props.info.aliases.length} aliases salvos.`)
+                    console.log(`Comando ${props.info.name} e seus ${props.info.aliases.length} aliases salvos.`)
+                }
+            } catch (ex) {
+                console.log(`Erro ao ler o arquivo ${arquivo}`)
+                console.log(ex)
             }
         })
     })
 }
-LerDiretorio();
+carregarComandos();
 
 /*
 Todo arquivo de comando deve seguir o seguinte padrão:
