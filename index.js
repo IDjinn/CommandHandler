@@ -19,7 +19,7 @@ const carregarComandos = module.exports = (dir = "./commands/") => {
                     carregarComandos(`./${dir}/${arquivo}`)
                 } else if (arquivo.endsWith(".js")) {
                     const props = require(`./${dir}/${arquivo}`)
-                    if (!props || !props.info || !props.run || !props.info.aliases) {
+                    if (!props || !props.info || !props.run || !props.info.aliases ||!props.info.name) {
                         console.log(`Não foi possível carregar o comando ${arquivo.split(".")[0]} pois ou não há ou falta propiedades.`);
                         return;
                     }
