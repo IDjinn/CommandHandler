@@ -10,7 +10,7 @@ client.on("ready", () => {
     console.log("bot online !")
 })
 
-const carregarComandos = module.exports = (dir = "./commands/") => {
+const carregarComandos = module.exports.carregarComandos = (dir = "./commands/") => {
     readdir(dir, (erro, arquivos) => {
         if (erro) return console.log(erro);
         arquivos.forEach((arquivo) => {
