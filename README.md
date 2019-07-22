@@ -2,7 +2,7 @@
 
 - Handler de comandos para bots do discord feitos em javascript, é possível separa-los em sub-pastas dentro da pasta "commands" se for de seu desejo
 
-####Modelo dos comandos:
+#### Modelo dos comandos:
 ```javascript
 module.exports.run = (client, message, args) => {
 // código do comando aqui
