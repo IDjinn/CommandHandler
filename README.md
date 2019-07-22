@@ -12,4 +12,4 @@ module.exports.info = {
     aliases: ["outro meio de chamar o comando"]
 }
 ```
-###### Feito com amor e javascript por kubi#0001 (505096421532368907)
+###### Feito com amor e javascript por [kubi#0001 (505096421532368907)](https://discordapp.com/users/505096421532368907 "kubi#0001 (505096421532368907)")
