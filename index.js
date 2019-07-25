@@ -47,7 +47,7 @@ module.exports.run = (client, message, args) => {
 }
 
 module.exports.info = {
-    name: "nome do comando"
+    name: "nome do comando",
     aliases: ["outro meio de chamar o comando"]
 }
 */
