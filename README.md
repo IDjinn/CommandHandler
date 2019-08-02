@@ -12,4 +12,6 @@ module.exports.info = {
     aliases: ["outro meio de chamar o comando"]
 }
 ```
+Caso esse modelo não seja seguido você provavelmente verá no console a mensagem "Não foi possível carregar o comando x pois ou não há ou falta propiedades." sendo x o nome do arquivo.
+
 ###### Feito com amor e javascript por [kubi#0001 (505096421532368907)](https://discordapp.com/users/505096421532368907 "kubi#0001 (505096421532368907)")
