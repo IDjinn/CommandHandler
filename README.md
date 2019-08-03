@@ -11,7 +11,7 @@ module.exports.run = (client, message, args) => {
 }
 module.exports.info = {
     name: "nome do comando",
-    aliases: ["outro meio de chamar o comando"]
+    aliases: ["outro meio de chamar o comando"] // opcional
 }
 ```
 Caso não haja em algum objeto que o modulo exporta o nome do comando, você verá um erro no console
