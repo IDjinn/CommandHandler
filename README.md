@@ -1,6 +1,6 @@
 ### HandlerBasico
 
-- Capaz de reconher arquivos de comando mesmo que eles estejam em outros diretorios dentro de "commands"
+- Capaz de reconher arquivos de comando mesmo que eles estejam em outros diretorios dentro de "commands";
 
 - Capaz de reconher o nome e os aliases do comando mesmo que eles não estejam dentro do objeto "info" do arquivo do comando.
 
