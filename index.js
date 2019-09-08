@@ -90,7 +90,7 @@ client.on("message", async message => {
     const cmd = args.shift().toLowerCase();
 
     const cmdParaExecutar = client.cmds.get(cmd) || client.aliases.get(cmd)
-    if (cmdParaExecutar != null) cmdParaExecutar.run(client, message, args)
+    if (cmdParaExecutar) cmdParaExecutar.run(client, message, args)
 })
 
 client.login(token)
