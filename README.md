@@ -2,8 +2,6 @@
 
 - Capaz de reconher arquivos de comando mesmo que eles estejam em outros diretorios dentro de "commands";
 
-- Capaz de reconher o nome e os aliases do comando mesmo que eles não estejam dentro do objeto "info" do arquivo do comando.
-
 #### Modelo dos comandos:
 ```javascript
 module.exports.run = (client, message, args) => {
@@ -15,4 +13,4 @@ module.exports.info = {
 }
 ```
 Caso não haja em algum objeto no modulo exporta o nome do comando, você verá um erro no console
-###### Feito com amor e javascript por [kubi#0001 (505096421532368907)](https://discordapp.com/users/505096421532368907 "kubi#0001 (505096421532368907)")
+###### Feito com amor e javascript por [Torres#0001 (597098946871164929)](https://discordapp.com/users/505096421532368907 "kubi#0001 (597098946871164929)")
