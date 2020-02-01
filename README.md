@@ -7,11 +7,11 @@
     $ git clone https://github.com/migueltsantos/HandlerBasico.git
     ```
 - Apague o .example do arquivo .env.example e coloque o seu token e o seu prefix
-- Instale as depêndencias
+- Instale as depêndencias:
     ```
     $ npm install
     ```
-- Crie arquivos de comandos seguindo o module dos comandos.
+- Crie arquivos de comandos seguindo o modelo dos comandos.
 #### Modelo dos comandos:
 ```javascript
 module.exports.run = (client, message, args) => {
