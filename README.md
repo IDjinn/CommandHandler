@@ -22,4 +22,4 @@ module.exports.info = {
     aliases: ['outro modo'] // opcional
 }
 ```
-###### Feito com amor e javascript por [Torres#0001 (597098946871164929)](https://discordapp.com/users/505096421532368907 "kubi#0001 (597098946871164929)")
+###### Feito com amor e javascript por [Torres#0001 (597098946871164929)](https://discordapp.com/users/505096421532368907 "Torres#0001 (505096421532368907)")
