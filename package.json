@@ -3,10 +3,11 @@
   "description": "Handler básico para bots do discord feitos em js com suporte a multi-pastas.",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "iKioshi",
+  "author": "migueltsantos",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+     "dotenv": "^8.2.0"
   },
-  "repository": "https://github.com/ikubi/HandlerBasico"
+  "repository": "https://github.com/migueltsantos/HandlerBasico"
 }
