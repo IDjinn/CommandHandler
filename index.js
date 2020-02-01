@@ -1,6 +1,6 @@
+require('dotenv/config');
 const { Client, Collection } = require("discord.js");
 const { readdir, lstatSync } = require("fs");
-const { token, prefix } = require("./config.json");
 
 const client = new Client();
 client.cmds = new Collection();
@@ -19,8 +19,10 @@ const carregarComandos = module.exports.carregarComandos = (path = './commands')
                 if(file.endsWith('.js') {
                     const command = require(`${path}/${file}`);
                     client.cmds.set(command.help.name, command);
-                    for (const alias of command.info.aliases) {
-                        client.aliases.set(alias, command);
+                    if(command.info.aliases && command.info.aliases.length) {
+                        for (const alias of command.info.aliases) {
+                            client.aliases.set(alias, command);
+                        };
                     };
                };
             };
@@ -29,18 +31,16 @@ const carregarComandos = module.exports.carregarComandos = (path = './commands')
 };
 
 client.on('message', message => {
-    if (message.author.bot) 
-        return;
-    if (message.content.indexOf(prefix) !== 0) 
-        return;
-    if (message.channel.type != 'text') 
-        return; 
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    if (message.author.bot) return;
+    if (message.content.indexOf(process.env.PREFIX) !== 0) return;
+    if (message.channel.type != 'text') return; 
+    
+    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-
     const cmdParaExecutar = client.cmds.get(cmd) || client.aliases.get(cmd);
+    
     if (cmdParaExecutar) 
         cmdParaExecutar.run(client, message, args);
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
