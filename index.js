@@ -1,10 +1,9 @@
 require('dotenv/config');
-const { Client, Collection } = require("discord.js");
-const { readdir, lstatSync } = require("fs");
-
+const { Client, Collection } = require('discord.js');
+const { readdir, lstatSync } = require('fs');
 const client = new Client();
-client.cmds = new Collection();
-client.aliases = new Collection();
+
+client.commands = [];
 
 client.on('ready', () => {
     console.log(`Logado no usuário: ${client.user.tag}`);
@@ -12,25 +11,22 @@ client.on('ready', () => {
 
 const carregarComandos = module.exports.carregarComandos = (path = './commands') => {
     readdir(path, (error, files) => {
-        if(error) console.log(error);
+        if(error) 
+            return console.log(error);
         for (const file of files) {
             console.log(`Atualmente no arquivo: ${file}`);
             if(lstatSync(`${path}/${file}`).isDirectory()) {
                 carregarComandos(`${path}/${file}`);
             } else {
-                if(file.endsWith('.js') {
+                if(file.endsWith('.js')) {
                     const command = require(`${path}/${file}`);
-                    client.cmds.set(command.help.name, command);
-                    if(command.info.aliases && command.info.aliases.length) {
-                        for (const alias of command.info.aliases) {
-                            client.aliases.set(alias, command);
-                        };
-                    };
+                    client.commands.push(command);
                };
             };
         };
     });
 };
+carregarComandos();
 
 client.on('message', message => {
     if (message.author.bot) return;
@@ -39,7 +35,7 @@ client.on('message', message => {
     
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-    const cmdParaExecutar = client.cmds.get(cmd) || client.aliases.get(cmd);
+    const cmdParaExecutar = client.commands.find(command => command.name === cmd || command.aliases.includes(cmd));
     
     if (cmdParaExecutar) 
         cmdParaExecutar.run(client, message, args);
