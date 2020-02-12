@@ -14,12 +14,14 @@
 - Crie arquivos de comandos seguindo o modelo dos comandos.
 #### Modelo dos comandos:
 ```javascript
-module.exports.run = (client, message, args) => {
-    // código do comando aqui
-}
-module.exports.info = {
-    name: 'modo para chamar o comando',
-    aliases: ['outro modo'] // opcional
+module.exports = {
+    run: (client, message, args) => {
+        // código do comando
+    },
+    info: {
+        name: 'modo para chamar o comando',
+        aliases: ['outro modo']
+    }
 }
 ```
 ###### Feito com amor e javascript por [Torres#0001 (597098946871164929)](https://discordapp.com/users/505096421532368907 "Torres#0001 (505096421532368907)")
