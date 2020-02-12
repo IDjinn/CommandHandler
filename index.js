@@ -6,7 +6,9 @@ const client = new Client();
 client.cmds = new Collection();
 client.aliases = new Collection();
 
-client.on('ready', () => console.log('bot online !')
+client.on('ready', () => {
+    console.log(`Logado no usuário: ${client.user.tag}`);
+});
 
 const carregarComandos = module.exports.carregarComandos = (path = './commands') => {
     readdir(path, (error, files) => {
