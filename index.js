@@ -9,24 +9,25 @@ client.on('ready', () => {
     console.log(`Logado no usuário: ${client.user.tag}`);
 });
 
-const carregarComandos = module.exports.carregarComandos = (path = './commands') => {
+this.carregarComandos = (path = './commands') => {
     readdir(path, (error, files) => {
         if(error) 
             return console.log(error);
         for (const file of files) {
             console.log(`Atualmente no arquivo: ${file}`);
             if(lstatSync(`${path}/${file}`).isDirectory()) {
-                carregarComandos(`${path}/${file}`);
+                this.carregarComandos(`${path}/${file}`);
             } else {
                 if(file.endsWith('.js')) {
                     const command = require(`${path}/${file}`);
                     client.commands.push(command);
+                    console.log(`${command.info.name} salvo !`);
                };
             };
         };
     });
 };
-carregarComandos();
+this.carregarComandos();
 
 client.on('message', message => {
     if (message.author.bot) return;
