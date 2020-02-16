@@ -36,7 +36,7 @@ client.on('message', message => {
     
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-    const cmdParaExecutar = client.commands.find(command => command.name === cmd || command.aliases.includes(cmd));
+    const cmdParaExecutar = client.commands.find(command => command.info.name === cmd || command.info.aliases.includes(cmd));
     
     if (cmdParaExecutar) 
         cmdParaExecutar.run(client, message, args);
