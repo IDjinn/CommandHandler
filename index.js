@@ -11,32 +11,32 @@ client.on('ready', () => {
 });
 
 // Cria a função dentro do this, assim ela poderá ser chamada dentro da função.
-this.carregarComandos = (path = './commands') => {
+const carregarComandos = (path = './commands') => {
     readdir(path, (error, files) => {
         if(error) 
             return console.log(error);
         for (const file of files) {
             console.log(`Atualmente no arquivo: ${file}`);
             if(lstatSync(`${path}/${file}`).isDirectory()) {
-                this.carregarComandos(`${path}/${file}`);
+                carregarComandos(`${path}/${file}`);
             } else {
                 if(file.endsWith('.js')) {
                     const command = require(`${path}/${file}`);
                     client.commands.push(command);
-                    console.log(`${command.info.name} salvo !`);
+                    console.log(`${command.info.name} carregado!`);
                };
             };
         };
     });
 };
-this.carregarComandos();
+carregarComandos();
 
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.indexOf(process.env.PREFIX) !== 0) return;
+    if (!message.content.startsWith(process.env.PREFIX)) return;
     if (message.channel.type != 'text') return; 
     
-    // Remove o prefix da mnesagem, e separa ela em um array pelos espaços. Por exemplo '!comando oi tudo bom', seria: ['comando', 'oi', 'tudo', 'bom']
+    // Remove o prefix da mensagem, e separa ela em um array pelos espaços. Por exemplo '!comando oi tudo bom', seria: ['comando', 'oi', 'tudo', 'bom']
     const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     // Só lembrando, mas a função shift() remove o primero elemento do Array e retorna ele !
     const cmd = args.shift().toLowerCase();
